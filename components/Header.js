@@ -2,14 +2,16 @@ import React from "react";
 import Doge from "../images/doge-removebg-preview.png";
 import Image from "next/image";
 import { SearchIcon } from "@heroicons/react/outline";
+import SearchHeaderOptions from "./SearchHeaderOptions";
+
 
 function Header() {
   return (
     <div className="">
-      <div className="bg-[#3a5b83] border-b-2 border-b-gray-400">
+      <div className="bg-[#3a5b83] border-b-2 border-t-2 border-t-gray-500 border-b-gray-400">
         {/* top section */}
-        <div className=" max-w-6xl mx-auto ">
-          <div className="px-5 items-center flex justify-between">
+        <div className=" max-w-[1500px] mx-auto ">
+          <div className="md:px-[90px] px-6 items-center flex justify-between">
             <Image
               src={Doge}
               width={80}
@@ -17,7 +19,7 @@ function Header() {
               objectFit="contain"
               className="cursor-pointer"
             />
-            <div className="bg-[#171b25] p-2 rounded-md flex items-center">
+            <div className="bg-[#171b25] p-2 rounded-md flex items-center w-[150px] md:w-[200px]">
               <input
                 className="text-white w-full bg-transparent outline-none focus:placeholder:text-transparent text-sm p-1 px-2"
                 type="text"
@@ -30,9 +32,7 @@ function Header() {
       </div>
 
       {/* bottom section */}
-      <div className="bg-[#677d99]">
-        <div className="max-w-6xl mx-auto">I am bottom</div>
-      </div>
+     <SearchHeaderOptions />
     </div>
   );
 }

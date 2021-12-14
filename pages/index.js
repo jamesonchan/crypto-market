@@ -1,18 +1,21 @@
 import Head from "next/head";
 import Response from "../Response";
 import Header from "../components/Header";
+import CoinList from "../components/CoinList";
 
 export default function Home({ results }) {
-  console.log(results);
+  console.log(results.data.coins);
 
   return (
-    <div className="">
+    <div className="bg-[#222735]">
       <Head>
         <title>Crypto Market</title>
       </Head>
 
       {/* Header */}
       <Header />
+      {/*  */}
+      <CoinList results={results} />
     </div>
   );
 }
