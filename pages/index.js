@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import CoinList from "../components/CoinList";
 
 export default function Home({ results }) {
-  console.log(results.data.coins);
+
 
   return (
     <div className="bg-[#222735]">
