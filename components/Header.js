@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import Doge from "../images/doge-removebg-preview.png";
 import Image from "next/image";
 import { SearchIcon } from "@heroicons/react/outline";
 import SearchHeaderOptions from "./SearchHeaderOptions";
-
+import { searchState } from "../atoms/SearchAtom";
+import { useRecoilState } from "recoil";
+import { debounce } from "lodash";
 
 function Header() {
+  const [searchValue, setSearchValue] = useRecoilState(searchState);
+
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const debouncedHandleSearch = useMemo(
+    () => debounce(handleSearch, 300),
+    [searchValue]
+  );
+
+  useEffect(() => {
+    return () => {
+      debouncedHandleSearch.cancel();
+    };
+  }, []);
+
   return (
     <div className="">
       <div className="bg-[#3a5b83] border-b-2 border-t-2 border-t-gray-500 border-b-gray-400">
@@ -24,6 +43,7 @@ function Header() {
                 className="text-white w-full bg-transparent outline-none focus:placeholder:text-transparent text-sm p-1 px-2"
                 type="text"
                 placeholder="Search Crypto..."
+                onChange={debouncedHandleSearch}
               />
               <SearchIcon className="h-5 text-white" />
             </div>
@@ -32,7 +52,7 @@ function Header() {
       </div>
 
       {/* bottom section */}
-     <SearchHeaderOptions />
+      <SearchHeaderOptions />
     </div>
   );
 }
