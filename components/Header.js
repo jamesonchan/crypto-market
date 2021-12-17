@@ -26,7 +26,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="">
+    <section className="" id="header">
       <div className="bg-[#3a5b83] border-b-2 border-t-2 border-t-gray-500 border-b-gray-400">
         {/* top section */}
         <div className=" max-w-[1500px] mx-auto ">
@@ -53,7 +53,7 @@ function Header() {
 
       {/* bottom section */}
       <SearchHeaderOptions />
-    </div>
+    </section>
   );
 }
 

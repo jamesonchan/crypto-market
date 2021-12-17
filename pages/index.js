@@ -5,9 +5,10 @@ import CoinList from "../components/CoinList";
 
 export default function Home({ results }) {
 
+ 
 
   return (
-    <div className="bg-[#222735] h-screen overflow-y-scroll">
+    <div className="bg-[#222735]">
       <Head>
         <title>Crypto Market</title>
       </Head>

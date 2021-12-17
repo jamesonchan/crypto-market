@@ -25,7 +25,7 @@ function SearchHeaderOptions() {
             <span className="hidden sm:inline-flex">Coins</span>
           </a>
         </Link>
-        <Link href="/news">
+        <Link href="/news?page=1">
           <a
             className={`headerOptions ${
               router.pathname === "/news" &&
