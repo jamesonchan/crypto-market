@@ -1,11 +1,14 @@
 module.exports = {
-  mode:'jit',
+  mode: "jit",
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/line-clamp')],
-}
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("tailwind-scrollbar-hide"),
+  ],
+};

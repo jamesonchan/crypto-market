@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Doge from "../images/doge-removebg-preview.png";
 import Image from "next/image";
 import { SearchIcon } from "@heroicons/react/outline";
@@ -6,9 +6,19 @@ import SearchHeaderOptions from "./SearchHeaderOptions";
 import { searchState } from "../atoms/SearchAtom";
 import { useRecoilState } from "recoil";
 import { debounce } from "lodash";
+import { useRouter } from "next/router";
 
-function Header() {
+function Header({ results }) {
   const [searchValue, setSearchValue] = useRecoilState(searchState);
+  const [searchResult, setSearchResult] = useState([]);
+  const router = useRouter()
+
+  useEffect(() => {
+    const result = results?.data.coins.filter((result) =>
+      result.name.toLowerCase().includes(searchValue.substring())
+    );
+    setSearchResult(result);
+  }, [searchValue]);
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -25,8 +35,10 @@ function Header() {
     };
   }, []);
 
+
+
   return (
-    <section className="" id="header">
+    <header className="" id="header">
       <div className="bg-[#3a5b83] border-b-2 border-t-2 border-t-gray-500 border-b-gray-400">
         {/* top section */}
         <div className=" max-w-[1500px] mx-auto ">
@@ -38,7 +50,7 @@ function Header() {
               objectFit="contain"
               className="cursor-pointer"
             />
-            <div className="bg-[#171b25] p-2 rounded-md flex items-center w-[150px] md:w-[200px]">
+            <div className="bg-[#171b25] p-2 relative rounded-md flex items-center w-[150px] md:w-[200px]">
               <input
                 className="text-white w-full bg-transparent outline-none focus:placeholder:text-transparent text-sm p-1 px-2"
                 type="text"
@@ -46,6 +58,23 @@ function Header() {
                 onChange={debouncedHandleSearch}
               />
               <SearchIcon className="h-5 text-white" />
+              <div
+                className={`opacity-0 ${
+                  searchValue && " opacity-100"
+                } w-[145px] sm:w-[195px] h-[300px] absolute top-[50px] right-0.5 bg-gray-600 rounded-lg bg-opacity-80 shadow-md overflow-hidden transition-all duration-200 overflow-y-scroll py-1 scrollbar-hide z-10`}
+              >
+                {searchResult?.map((result) => (
+                  <div key={result.id} className="text-white">
+                    <div onClick={()=>router.push(`/search/${result.id}`).then(setSearchValue(''))} className="flex items-center p-3 hover:bg-gray-300 space-x-2 cursor-pointer">
+                      <img className="h-5" src={result.iconUrl} alt="" />
+                      <div>
+                      <h1 className="text-sm font-semibold">{result.name}</h1>
+                      <p>{result.symbol}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -53,7 +82,7 @@ function Header() {
 
       {/* bottom section */}
       <SearchHeaderOptions />
-    </section>
+    </header>
   );
 }
 

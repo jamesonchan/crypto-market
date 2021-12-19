@@ -6,7 +6,6 @@ import {
   CurrencyDollarIcon,
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
-import SearchHeaderOption from "./SearchHeaderOption";
 import Link from "next/link";
 
 function SearchHeaderOptions() {
@@ -45,17 +44,6 @@ function SearchHeaderOptions() {
           >
             <ChartBarIcon className="h-6" />
             <span className="hidden sm:inline-flex">Technical Analysis</span>
-          </a>
-        </Link>
-        <Link href="/market">
-          <a
-            className={`headerOptions ${
-              router.pathname === "/market" &&
-              "text-yellow-300 border-b-yellow-300"
-            }`}
-          >
-            <CurrencyDollarIcon className="h-6" />
-            <span className="hidden sm:inline-flex">Markets</span>
           </a>
         </Link>
       </div>

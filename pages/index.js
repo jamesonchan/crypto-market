@@ -1,20 +1,17 @@
 import Head from "next/head";
 import Response from "../Response";
-import Header from "../components/Header";
 import CoinList from "../components/CoinList";
+import Footer from "../components/Footer";
+import Header from '../components/Header'
 
 export default function Home({ results }) {
-
- 
-
   return (
-    <div className="bg-[#222735]">
+    <div>
       <Head>
         <title>Crypto Market</title>
       </Head>
-
-      {/* Header */}
-      <Header />
+      {/* header */}
+      <Header results={results}/>
       {/*  */}
       <CoinList results={results} />
     </div>
@@ -22,7 +19,7 @@ export default function Home({ results }) {
 }
 
 export async function getServerSideProps() {
-  const useDummyData = true;
+  const useDummyData = false;
   const data = useDummyData
     ? Response
     : await fetch("https://coinranking1.p.rapidapi.com/coins", {

@@ -1,6 +1,7 @@
 import React from "react";
 import numeral from "numeral";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
 
 function Coin({
   id,
@@ -12,17 +13,18 @@ function Coin({
   marketCap,
   volume,
   allTimeHigh: { price: ahPrice },
-  description,
 }) {
   const priceFormat = price < 0.1 ? numeral(price).format('0.00000') : numeral(price).format('0.00') 
   const marketCapFormat = numeral(marketCap).format("0.0 a").toUpperCase();
   const volumeFormat = numeral(volume).format("0.0 a").toUpperCase();
   const ahPriceFormat = numeral(ahPrice * 1).format("0.00");
 
+  const router = useRouter()
+
 
   return (
     <div className="px-3">
-      <div className="text-white flex py-3 px-5 border-b border-b-gray-500 cursor-pointer items-center hover:bg-gray-600">
+      <div onClick={()=>router.push(`/search/${id}`)} className="text-white flex py-3 px-5 border-b border-b-gray-500 cursor-pointer items-center hover:bg-gray-600">
         {/* symbol and full name */}
         <div className="flex items-center space-x-4 pl-2 w-[400px] sm:w-[300px]">
           <img src={iconUrl} alt="" className="h-7" />

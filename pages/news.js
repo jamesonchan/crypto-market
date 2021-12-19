@@ -8,10 +8,10 @@ import NewsResponse from "../NewsResponse";
 
 function News({ newsResults }) {
   return (
-    <div className="bg-[#222735] h-full">
+    <div>
       <Header />
       <NewsList newsResults={newsResults}/>
-      <Pagination />
+      <Pagination main='news'/>
     </div>
   );
 }
@@ -20,7 +20,7 @@ export default News;
 
 export async function getServerSideProps(context) {
   const pageIndex = context.query.page || "1";
-  const useDummyData = true;
+  const useDummyData = false;
   const data = useDummyData
     ? NewsResponse
     : await fetch(
