@@ -26,7 +26,7 @@ function Coin({
     <div className="px-3">
       <div onClick={()=>router.push(`/search/${id}`)} className="text-white flex py-3 px-5 border-b border-b-gray-500 cursor-pointer items-center hover:bg-gray-600">
         {/* symbol and full name */}
-        <div className="flex items-center space-x-4 pl-2 w-[400px] sm:w-[300px]">
+        <div  className="flex items-center space-x-4 pl-2 w-[350px] sm:w-[300px]">
           <img src={iconUrl} alt="" className="h-7" />
           <div className="flex-grow">
             <h1 className="font-bold text-md">{symbol}</h1>

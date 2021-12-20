@@ -59,21 +59,25 @@ function Header({ results }) {
               />
               <SearchIcon className="h-5 text-white" />
               <div
-                className={`opacity-0 ${
-                  searchValue && " opacity-100"
-                } w-[145px] sm:w-[195px] h-[300px] absolute top-[50px] right-0.5 bg-gray-600 rounded-lg bg-opacity-80 shadow-md overflow-hidden transition-all duration-200 overflow-y-scroll py-1 scrollbar-hide z-10`}
+                className={`hidden${
+                  searchValue && "top-[20px] absolute"
+                } w-[145px] sm:w-[195px] h-[300px] top-[50px] right-0.5 bg-gray-600 rounded-lg bg-opacity-80 shadow-md overflow-hidden transition-all duration-250 overflow-y-scroll py-1 scrollbar-hide z-20`}
               >
-                {searchResult?.map((result) => (
-                  <div key={result.id} className="text-white">
-                    <div onClick={()=>router.push(`/search/${result.id}`).then(setSearchValue(''))} className="flex items-center p-3 hover:bg-gray-300 space-x-2 cursor-pointer">
-                      <img className="h-5" src={result.iconUrl} alt="" />
-                      <div>
-                      <h1 className="text-sm font-semibold">{result.name}</h1>
-                      <p>{result.symbol}</p>
+                {searchResult?.length === 0 ? (
+                  <h1 className="text-white font-bold text-sm sm:text-lg text-center p-5">Bow-wow,results not found...</h1>
+                ):(
+                  searchResult?.map((result) => (
+                    <div key={result.id} className="text-white">
+                      <div onClick={()=>router.push(`/search/${result.id}`).then(setSearchValue(''))} className="flex items-center p-3 hover:bg-gray-300 space-x-2 cursor-pointer">
+                        <img className="h-5" src={result.iconUrl} alt="" />
+                        <div>
+                        <h1 className="text-sm font-semibold">{result.name}</h1>
+                        <p>{result.symbol}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
             </div>
           </div>
