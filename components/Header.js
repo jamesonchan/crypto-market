@@ -15,7 +15,7 @@ function Header({ results }) {
 
   useEffect(() => {
     const result = results?.data.coins.filter((result) =>
-      result.name.toLowerCase().includes(searchValue.substring())
+      result.name.toLowerCase().includes(searchValue.substring().toLowerCase())
     );
     setSearchResult(result);
   }, [searchValue]);
